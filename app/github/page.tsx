@@ -8,13 +8,12 @@ const inter = Inter({
 });
 
 export default function Page() {
-    const redirectRef = useRef(null);
+    const redirectRef = useRef<HTMLAnchorElement>(null);
 
     useEffect(() => {
         const timeout = setTimeout(() => {
             redirectRef.current?.click();
         }, 500);
-        return () => clearTimeout(timeout);
     }, []);
 
     return <main>
