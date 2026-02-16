@@ -10,8 +10,8 @@ export default function Home() {
             <TextWithIcons icon={LocationBlank} text="France, Ille-et-Vilaine" />
             <TextWithIcons icon={CodeAlt} text="C#, C++, Python" />
             <div className="flex items-center gap-4">
-                <button className="mt-4 px-6 py-2 rounded-md border border-black hover:bg-gray-100 cursor-pointer transition-colors">About Me</button>
-                <Link href="/github" className="mt-4 p-2 rounded-md hover:bg-gray-100 cursor-pointer transition-colors"><Github /></Link>
+                <button className="mt-4 px-6 py-2 rounded-md border border-black dark:border-white hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors">About Me</button>
+                <Link href="/github" className="mt-4 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors"><Github /></Link>
             </div>
         </section>
         <aside className="hidden md:flex w-1/2 items-center justify-center">
