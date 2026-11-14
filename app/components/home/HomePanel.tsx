@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { external, layer } from "../../lib/layer";
 import { GITHUB_URL } from "../../lib/projects";
 import { CodeIcon, GithubIcon, LocationIcon } from "../ui/icons";
@@ -37,9 +36,6 @@ export default function HomePanel() {
           />
         </div>
       </div>
-      <Link className="legal-link" href="/legal" lang="fr">
-        Mentions légales
-      </Link>
     </section>
   );
 }
