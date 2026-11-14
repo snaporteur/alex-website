@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
 import { useStage } from "../lib/useStage";
 import HomePanel from "./home/HomePanel";
@@ -16,6 +17,10 @@ export default function Site() {
         <HomePanel />
         <AboutPanel />
       </div>
+      {/* hors de .world : fixe, il ne suit ni l'inclinaison ni les transitions de la scène */}
+      <Link className="legal-link" href="/legal" lang="fr">
+        Mentions légales
+      </Link>
     </div>
   );
 }
