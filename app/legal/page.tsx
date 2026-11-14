@@ -5,8 +5,9 @@ import { GITHUB_URL } from "../lib/projects";
 import { BackIcon } from "../components/ui/icons";
 
 export const metadata: Metadata = {
-  title: "Mentions légales · Alexandre J.",
+  title: "Mentions légales",
   description: "Mentions légales et informations RGPD du site d'Alexandre J.",
+  alternates: { canonical: "/legal" },
 };
 
 const UPDATED = "4 novembre 2026";
