@@ -89,6 +89,12 @@ body.is-about .about .layer { opacity: 1; --d: calc(.2s + var(--i, 0) * .05s); }
 /* le plan inactif ne capte jamais un toucher */
 .about, body.is-about .home { pointer-events: none; }
 body.is-about .about { pointer-events: auto; }
+/* Le plan inactif est aussi masqué en entier : seuls les calques sont fondus par opacité, donc
+   sa barre de défilement et ses bordures restaient visibles au fond (barre verticale / trait horizontal). */
+.about, body.is-about .home { visibility: hidden; transition: transform .9s var(--ease), visibility 0s .9s; }
+.home, body.is-about .about { visibility: visible; transition: transform .9s var(--ease), visibility 0s 0s; }
+body.is-about .about { transition-delay: .05s, .25s; }
+.home { transition-delay: 0s, .25s; }
 body.is-about .home .layer { --d: 0s; }
 
 /* ---------- Home ---------- */
@@ -169,7 +175,8 @@ h2.title { font-size: clamp(2.5rem, 5vw, 4.25rem); }
 @media (min-width: 900px) {
   .about .col:first-child { position: sticky; top: 2rem; }
 }
-.tabpanel + .tabpanel { padding-top: 2rem; border-top: 1px solid var(--line); }
+.tabpanel + .tabpanel { padding-top: 2rem; border-top: 1px solid transparent; transition: border-color .7s ease .25s; }
+body.is-about .tabpanel + .tabpanel { border-top-color: var(--line); }
 .tabpanel { display: flex; flex-direction: column; gap: 1.75rem; transform-style: preserve-3d; }
 
 /* ---------- Projets ---------- */
