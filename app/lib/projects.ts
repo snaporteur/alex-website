@@ -3,9 +3,7 @@ export type Lang = { name: string; color: string };
 export type Project = {
   name: string;
   repo: string;
-  desc: string;
   langs: Lang[];
-  kind?: string;
 };
 
 const L = {
@@ -23,30 +21,24 @@ export const featured: Project[] = [
   {
     name: "esports-player",
     repo: "esports-player",
-    desc: "Desktop app to follow esports live and on demand from hand-picked YouTube and Twitch channels.",
     langs: [L.ts, L.rust],
-    kind: "Tauri app",
   },
   {
     name: "theme-manager",
     repo: "theme-manager",
-    desc: "A theme manager written in Rust.",
     langs: [L.rust],
-    kind: "Tool",
   },
   {
     name: "TheBot",
     repo: "TheBot",
-    desc: "Discord bot for my friends' server.",
     langs: [L.py],
-    kind: "Bot",
   },
 ];
 
 export const others: Project[] = [
-  { name: "structgen", repo: "structgen", desc: "Struct generator from .st files, with serialization.", langs: [L.cpp] },
-  { name: "OpenGL Sandbox", repo: "OpenGL-C--LearnProject", desc: "Getting familiar with Silk.NET and OpenGL.", langs: [L.cs] },
-  { name: "buildpy", repo: "buildpy", desc: "A simple build script that uses CMake.", langs: [L.py] },
-  { name: "dotfiles", repo: "dotfiles", desc: "My personal configuration files.", langs: [L.lua] },
-  { name: "alex-website", repo: "alex-website", desc: "The code of this website.", langs: [L.ts] },
+  { name: "structgen", repo: "structgen", langs: [L.cpp] },
+  { name: "OpenGL Sandbox", repo: "OpenGL-C--LearnProject", langs: [L.cs] },
+  { name: "buildpy", repo: "buildpy", langs: [L.py] },
+  { name: "dotfiles", repo: "dotfiles", langs: [L.lua] },
+  { name: "alex-website", repo: "alex-website", langs: [L.ts] },
 ];

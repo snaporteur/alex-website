@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { external } from "../lib/layer";
-import { GITHUB_URL } from "../lib/projects";
-import { BackIcon } from "../components/ui/icons";
+import { external } from "../../lib/layer";
+import { GITHUB_URL } from "../../lib/projects";
+import { BackIcon } from "../../components/ui/icons";
 
 export const metadata: Metadata = {
   title: "Mentions légales",
   description: "Mentions légales et informations RGPD du site d'Alexandre J.",
   alternates: { canonical: "/legal" },
+  openGraph: {
+    type: "website",
+    url: "/legal",
+    siteName: "Alexandre J.",
+    title: "Mentions légales · Alexandre J.",
+    description: "Mentions légales et informations RGPD du site d'Alexandre J.",
+    locale: "fr_FR",
+  },
 };
 
 const UPDATED = "4 novembre 2026";
