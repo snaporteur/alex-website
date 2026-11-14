@@ -1,8 +1,9 @@
 import { external, layer } from "../../lib/layer";
+import type { Dict } from "../../lib/i18n";
 import { GITHUB_URL } from "../../lib/projects";
 import { CodeIcon, GithubIcon, LocationIcon } from "../ui/icons";
 
-export default function HomePanel() {
+export default function HomePanel({ t }: { t: Dict }) {
   return (
     <section className="panel home" id="home" aria-labelledby="name">
       <div className="wrap">
@@ -12,28 +13,23 @@ export default function HomePanel() {
           </h1>
           <p className="info layer" style={layer(45, 1)}>
             <LocationIcon />
-            France, Ille-et-Vilaine
+            {t.home.location}
           </p>
           <p className="info layer" style={layer(45, 2)}>
             <CodeIcon />
-            C#, C++, Python
+            {t.home.langs}
           </p>
           <div className="actions layer" style={layer(70, 3)}>
             <a className="btn" id="to-about" href="#about">
-              About Me
+              {t.home.about}
             </a>
-            <a className="icon-link" href={GITHUB_URL} {...external} aria-label="GitHub (opens in a new tab)">
+            <a className="icon-link" href={GITHUB_URL} {...external} aria-label={t.home.github}>
               <GithubIcon />
             </a>
           </div>
         </div>
         <div className="visual layer" style={layer(-40, 1)}>
-          <div
-            className="scene"
-            id="scene"
-            role="img"
-            aria-label="A 3D code symbol </> that rotates and follows the mouse"
-          />
+          <div className="scene" id="scene" role="img" aria-label={t.home.scene} />
         </div>
       </div>
     </section>

@@ -13,35 +13,36 @@ export function LangTag({ lang }: { lang: Lang }) {
 }
 
 const repoUrl = (p: Project) => `${GITHUB_URL}/${p.repo}`;
-const NewTab = () => <span className="sr">(opens GitHub in a new tab)</span>;
+const NewTab = ({ label }: { label: string }) => <span className="sr">{label}</span>;
+type Props = { project: Project; text: { desc: string; kind?: string }; newTab: string };
 
 /** Grande carte d'un projet mis en avant. */
-export function FeaturedProjectCard({ project: p }: { project: Project }) {
+export function FeaturedProjectCard({ project: p, text, newTab }: Props) {
   return (
     <a className="project feature" href={repoUrl(p)} {...external}>
       <b>{p.name}</b>
-      <span className="desc">{p.desc}</span>
+      <span className="desc">{text.desc}</span>
       <span className="meta">
         {p.langs.map((l) => (
           <LangTag key={l.name} lang={l} />
         ))}
-        {p.kind && <span>{p.kind}</span>}
+        {text.kind && <span>{text.kind}</span>}
       </span>
       <GoIcon />
-      <NewTab />
+      <NewTab label={newTab} />
     </a>
   );
 }
 
 /** Ligne compacte d'un autre projet. */
-export function ProjectRow({ project: p }: { project: Project }) {
+export function ProjectRow({ project: p, text, newTab }: Props) {
   return (
     <a href={repoUrl(p)} {...external}>
       <b>{p.name}</b>
-      <span className="desc">{p.desc}</span>
+      <span className="desc">{text.desc}</span>
       <LangTag lang={p.langs[0]} />
       <GoIcon />
-      <NewTab />
+      <NewTab label={newTab} />
     </a>
   );
 }

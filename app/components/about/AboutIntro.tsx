@@ -1,26 +1,19 @@
 import { layer } from "../../lib/layer";
+import type { Dict } from "../../lib/i18n";
+import { rich } from "../../lib/rich";
 
-const languages = [
-  { name: "C#", use: "Unity games and .NET apps" },
-  { name: "C++", use: "Engines, graphics and performance" },
-  { name: "Python", use: "Scripts, tools and automation" },
-];
-
-export default function AboutIntro() {
+export default function AboutIntro({ t }: { t: Dict }) {
   return (
     <div className="tabpanel" id="tab-about">
-      <p className="layer" style={layer(40, 1)}>
-        Hi, I&apos;m <strong>Alexandre</strong>, a student developer from Ille-et-Vilaine, France. I&apos;m specialising
-        in <strong>graphics programming</strong>: the code that turns geometry, light and shaders into pixels.
-      </p>
-      <p className="layer" style={layer(40, 2)}>
-        I like building <strong>games</strong>, <strong>interactive 3D</strong>, <strong>apps and tools</strong>, and
-        small <strong>scripts</strong> that automate the boring parts.
-      </p>
+      {t.about.intro.map((text, i) => (
+        <p key={i} className="layer" style={layer(40, i + 1)}>
+          {rich(text)}
+        </p>
+      ))}
       <div className="layer" style={layer(30, 3)}>
-        <h3>Languages</h3>
+        <h3>{t.about.languages}</h3>
         <ul className="list">
-          {languages.map((l) => (
+          {t.languages.map((l) => (
             <li key={l.name}>
               {l.name} <span>{l.use}</span>
             </li>
