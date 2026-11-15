@@ -1,11 +1,28 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { external, layer } from "../../lib/layer";
 import type { Dict } from "../../lib/i18n";
-import { featured, GITHUB_URL, others } from "../../lib/projects";
+import { fetchSiteProjects } from "../../lib/alpjm";
+import { featured as staticFeatured, GITHUB_URL, others as staticOthers, type Project } from "../../lib/projects";
 import { GithubIcon } from "../ui/icons";
 import { FeaturedProjectCard, ProjectRow } from "./ProjectItems";
 
 export default function Projects({ t }: { t: Dict }) {
   const { items, newTab } = t.projects;
+  // Liste statique tant qu'AlPjM n'a pas répondu (ou si l'API est indisponible).
+  const [{ featured, others }, setLists] = useState<{ featured: Project[]; others: Project[] }>({
+    featured: staticFeatured,
+    others: staticOthers,
+  });
+  useEffect(() => {
+    const ctrl = new AbortController();
+    fetchSiteProjects(ctrl.signal)
+      .then((l) => l.featured.length + l.others.length > 0 && setLists(l))
+      .catch(() => {});
+    return () => ctrl.abort();
+  }, []);
+  const text = (p: Project) => items[p.repo] ?? { desc: p.desc ?? "", kind: p.kind };
   return (
     <div className="tabpanel" id="projects">
       <section className="layer" style={layer(50, 2)} aria-labelledby="feat-t">
@@ -13,7 +30,7 @@ export default function Projects({ t }: { t: Dict }) {
         <ul className="projects featured-list">
           {featured.map((p) => (
             <li key={p.repo}>
-              <FeaturedProjectCard project={p} text={items[p.repo]} newTab={newTab} />
+              <FeaturedProjectCard project={p} text={text(p)} newTab={newTab} />
             </li>
           ))}
         </ul>
@@ -23,7 +40,7 @@ export default function Projects({ t }: { t: Dict }) {
         <ul className="others">
           {others.map((p) => (
             <li key={p.repo}>
-              <ProjectRow project={p} text={items[p.repo]} newTab={newTab} />
+              <ProjectRow project={p} text={text(p)} newTab={newTab} />
             </li>
           ))}
         </ul>

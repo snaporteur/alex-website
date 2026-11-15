@@ -12,7 +12,7 @@ export function LangTag({ lang }: { lang: Lang }) {
   );
 }
 
-const repoUrl = (p: Project) => `${GITHUB_URL}/${p.repo}`;
+const repoUrl = (p: Project) => p.url ?? `${GITHUB_URL}/${p.repo}`;
 const NewTab = ({ label }: { label: string }) => <span className="sr">{label}</span>;
 type Props = { project: Project; text: { desc: string; kind?: string }; newTab: string };
 
@@ -40,7 +40,7 @@ export function ProjectRow({ project: p, text, newTab }: Props) {
     <a href={repoUrl(p)} {...external}>
       <b>{p.name}</b>
       <span className="desc">{text.desc}</span>
-      <LangTag lang={p.langs[0]} />
+      {p.langs[0] && <LangTag lang={p.langs[0]} />}
       <GoIcon />
       <NewTab label={newTab} />
     </a>
