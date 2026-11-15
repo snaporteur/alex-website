@@ -6,7 +6,7 @@ Personal website / portfolio of Alex.
 
 ## Concept
 
-A fullscreen 3D scene with two layers: *Home* in the foreground and *About* in the background, and you move from one to the other. The About page presents GitHub projects (featured ones plus a list of other projects, with their languages — see `app/lib/projects.ts`).
+A fullscreen 3D scene with two layers: *Home* in the foreground and *About* in the background, and you move from one to the other. The About page presents GitHub projects (featured ones plus a list of other projects, with their languages), loaded from AlPjM.
 
 Pages: home (`/`), `/fr` (French version), `/legal` (legal notice / GDPR).
 
@@ -31,7 +31,7 @@ The result is generated in `out/`. The project uses **npm** (`package-lock.json`
 
 ## Projects from AlPjM
 
-The projects shown on the About page are read live (in the browser) from the AlPjM REST API, with a **read-only API key** limited to the projects of one workspace. If the API is unreachable, the static list in `app/lib/projects.ts` is shown instead.
+The projects shown on the About page are read live (in the browser) from the AlPjM REST API, with a **read-only API key** limited to the projects of one workspace. There is no list in the code: if the API is unreachable or no project is tagged, the project sections are hidden.
 
 Configure at build time (see `.env.example`; these values end up in the public bundle, so only use a read-only key):
 
