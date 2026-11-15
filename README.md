@@ -8,7 +8,7 @@ Personal website / portfolio of Alex.
 
 A fullscreen 3D scene with two layers: *Home* in the foreground and *About* in the background, and you move from one to the other. The About page presents GitHub projects (featured ones plus a list of other projects, with their languages — see `app/lib/projects.ts`).
 
-Pages: home (`/`), `/fr` (French version), `/github` (redirects to the GitHub profile), `/legal` (legal notice / GDPR).
+Pages: home (`/`), `/fr` (French version), `/legal` (legal notice / GDPR).
 
 ## Getting started
 
