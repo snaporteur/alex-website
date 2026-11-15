@@ -1,27 +1,15 @@
-"use client"
-import { Inter } from 'next/font/google';
-import { useEffect, useRef } from 'react';
+const GITHUB_URL = 'https://github.com/snaporteur';
 
-const inter = Inter({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-});
-
+// The site is statically exported, so `redirect()` and next.config redirects
+// can't issue a real HTTP redirect. A server-rendered <meta refresh> works
+// without any client-side JavaScript.
 export default function Page() {
-    const redirectRef = useRef<HTMLAnchorElement>(null);
-
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            redirectRef.current?.click();
-        }, 500);
-    }, []);
-
-    return <main>
-        <div className={`${inter.className} flex justify-center items-center h-screen`}>
-            <h1 className="text-4xl font-bold">Redirecting to GitHub...</h1>
-        </div>
-        <div className="hidden">
-            <a ref={redirectRef} href="https://github.com/snaporteur" rel="noopener noreferrer"></a>
-        </div>
-    </main>
+    return (
+        <main className="flex h-screen items-center justify-center">
+            <meta httpEquiv="refresh" content={`0;url=${GITHUB_URL}`} />
+            <h1 className="text-4xl font-bold">
+                Redirecting to <a href={GITHUB_URL} rel="noopener noreferrer" className="underline">GitHub</a>...
+            </h1>
+        </main>
+    );
 }
